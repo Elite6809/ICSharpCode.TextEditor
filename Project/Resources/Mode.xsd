@@ -155,6 +155,7 @@
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
 				<!-- Svante Lidman, looking in the code it is a bit unclear what the intent is here... -->
+				<!-- Elite6809 - my best guess is that it will highlight the trigger string as well as the preceding word. -->
 				<xsd:attribute name="markmarker" type="xsd:boolean" />
 				<!-- The rendering style to be used -->
 				<xsd:attribute name="bold" type="xsd:boolean" />
@@ -170,6 +171,7 @@
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
 				<!-- Svante Lidman, looking in the code it is a bit unclear what the intent is here... -->
+				<!-- Elite6809 - my best guess is that it will highlight the trigger string as well as the following word. -->
 				<xsd:attribute name="markmarker" type="xsd:boolean" />
 				<!-- The rendering style to be used -->
 				<xsd:attribute name="bold" type="xsd:boolean" />
