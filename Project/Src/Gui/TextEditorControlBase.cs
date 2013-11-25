@@ -115,10 +115,17 @@ namespace ICSharpCode.TextEditor
 		[Editor("System.ComponentModel.Design.MultilineStringEditor, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
 		public override string Text {
 			get {
+				if (Document == null) 
+				{
+					return String.Empty;
+				}
 				return Document.TextContent;
 			}
 			set {
-				Document.TextContent = value;
+				if (Document != null) 
+				{
+					Document.TextContent = value;
+				}
 			}
 		}
 		
