@@ -163,7 +163,7 @@ namespace ICSharpCode.TextEditor
 				                                        fontHeight);
 				
 				if (rect.IntersectsWith(lineRectangle)) {
-					int fvl = textArea.Document.GetVisibleLine(FirstVisibleLine);
+					/*int fvl =*/ textArea.Document.GetVisibleLine(FirstVisibleLine);
 					int currentLine = textArea.Document.GetFirstLogicalLine(textArea.Document.GetVisibleLine(FirstVisibleLine) + y);
 					PaintDocumentLine(g, currentLine, lineRectangle);
 				}

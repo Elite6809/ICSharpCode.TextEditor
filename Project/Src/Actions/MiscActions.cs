@@ -187,7 +187,7 @@ namespace ICSharpCode.TextEditor.Actions
 				// previous tab stop. It will stop at the beginning of the line. Also, the desired
 				// column is updated to that column.
 				LineSegment line = textArea.Document.GetLineSegmentForOffset(textArea.Caret.Offset);
-				string startOfLine = textArea.Document.GetText(line.Offset,textArea.Caret.Offset - line.Offset);
+				/*string startOfLine =*/ textArea.Document.GetText(line.Offset,textArea.Caret.Offset - line.Offset);
 				int tabIndent = textArea.Document.TextEditorProperties.IndentationSize;
 				int currentColumn = textArea.Caret.Column;
 				int remainder = currentColumn % tabIndent;
@@ -258,7 +258,7 @@ namespace ICSharpCode.TextEditor.Actions
 					continue;
 				}
 				
-				string lineText = document.GetText(line.Offset, line.Length);
+				/*string lineText =*/ document.GetText(line.Offset, line.Length);
 				document.Insert(line.Offset, comment);
 			}
 		}
@@ -552,7 +552,7 @@ namespace ICSharpCode.TextEditor.Actions
 					
 					if (curLineOffset == textArea.Caret.Offset) {
 						LineSegment line = textArea.Document.GetLineSegment(curLineNr - 1);
-						bool lastLine = curLineNr == textArea.Document.TotalNumberOfLines;
+						// bool lastLine = curLineNr == textArea.Document.TotalNumberOfLines;
 						int lineEndOffset = line.Offset + line.Length;
 						int lineLength = line.Length;
 						textArea.Document.Remove(lineEndOffset, curLineOffset - lineEndOffset);

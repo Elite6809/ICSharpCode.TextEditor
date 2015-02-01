@@ -19,8 +19,8 @@ namespace ICSharpCode.TextEditor.Document
 		public List<FoldMarker> GenerateFoldMarkers(IDocument document, string fileName, object parseInformation)
 		{
 			List<FoldMarker> l = new List<FoldMarker>();
-			Stack<int> offsetStack = new Stack<int>();
-			Stack<string> textStack = new Stack<string>();
+			//Stack<int> offsetStack = new Stack<int>();
+			//Stack<string> textStack = new Stack<string>();
 			//int level = 0;
 			//foreach (LineSegment segment in document.LineSegmentCollection) {
 			//	

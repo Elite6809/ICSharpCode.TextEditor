@@ -78,7 +78,7 @@ namespace ICSharpCode.TextEditor
 		
 		protected void OnDragDrop(object sender, DragEventArgs e)
 		{
-			Point p = textArea.PointToClient(new Point(e.X, e.Y));
+			//Point p = textArea.PointToClient(new Point(e.X, e.Y));
 			
 			if (e.Data.GetDataPresent(typeof(string))) {
 				textArea.BeginUpdate();
