@@ -124,7 +124,15 @@ namespace ICSharpCode.TextEditor
 			set {
 				if (Document != null) 
 				{
-					Document.TextContent = value;
+                    BeginUpdate();
+                    try
+                    {
+					    Document.TextContent = value;
+                    }
+                    finally
+                    {
+                        EndUpdate();
+                    }
 				}
 			}
 		}
