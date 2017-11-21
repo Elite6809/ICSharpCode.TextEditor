@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace ICSharpCode.TextEditor.Actions 
 {
@@ -29,7 +30,14 @@ namespace ICSharpCode.TextEditor.Actions
 			if (textArea.Document.ReadOnly) {
 				return;
 			}
-			textArea.ClipboardHandler.Paste(null, null);
+            try
+            {
+			    textArea.ClipboardHandler.Paste(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 		}
 	}
 }
