@@ -5,16 +5,16 @@
 //     <version>$Revision$</version>
 // </file>
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Windows.Forms;
-
-using ICSharpCode.TextEditor.Document;
-
 namespace ICSharpCode.TextEditor
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.Windows.Forms;
+
+    using ICSharpCode.TextEditor.Document;
+
 	/// <summary>
 	/// This class paints the textarea.
 	/// </summary>
@@ -1045,7 +1045,10 @@ namespace ICSharpCode.TextEditor
 		
 		void DrawString(Graphics g, string text, Font font, Color color, int x, int y)
 		{
-			TextRenderer.DrawText(g, text, font, new Point(x, y), color, textFormatFlags);
+            // TextFormatFlags.NoClipping
+            // Allows the overhanging parts of glyphs and unwrapped text reaching outside the formatting rectangle to show.
+            // see https://github.com/mono/mono/issues/6352
+            TextRenderer.DrawText (g, text, font, new Point (x, y), color, textFormatFlags | TextFormatFlags.NoClipping);
 		}
 		
 		void DrawInvalidLineMarker(Graphics g, int x, int y)
