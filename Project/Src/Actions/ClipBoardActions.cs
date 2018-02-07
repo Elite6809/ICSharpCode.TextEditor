@@ -1,11 +1,5 @@
-﻿// <file>
-//     <copyright see="prj:///doc/copyright.txt"/>
-//     <license see="prj:///doc/license.txt"/>
-//     <owner name="Mike Krüger" email="mike@icsharpcode.net"/>
-//     <version>$Revision$</version>
-// </file>
-
-using System;
+﻿using System;
+using System.Windows.Forms;
 
 namespace ICSharpCode.TextEditor.Actions 
 {
@@ -36,7 +30,14 @@ namespace ICSharpCode.TextEditor.Actions
 			if (textArea.Document.ReadOnly) {
 				return;
 			}
-			textArea.ClipboardHandler.Paste(null, null);
+            try
+            {
+			    textArea.ClipboardHandler.Paste(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 		}
 	}
 }

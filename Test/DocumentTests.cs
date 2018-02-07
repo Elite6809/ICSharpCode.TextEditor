@@ -17,7 +17,7 @@ namespace ICSharpCode.TextEditor.Tests
 		[Test]
 		public void TestDocumentGenerationTest()
 		{
-			IDocument document = new DocumentFactory().CreateDocument();
+			/*IDocument document =*/ new DocumentFactory().CreateDocument();
 		}
 		
 		[Test]

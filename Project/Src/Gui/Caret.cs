@@ -15,25 +15,7 @@ using ICSharpCode.TextEditor.Document;
 
 namespace ICSharpCode.TextEditor
 {
-	/// <summary>
-	/// In this enumeration are all caret modes listed.
-	/// </summary>
-	public enum CaretMode {
-		/// <summary>
-		/// If the caret is in insert mode typed characters will be
-		/// inserted at the caret position
-		/// </summary>
-		InsertMode,
-		
-		/// <summary>
-		/// If the caret is in overwirte mode typed characters will
-		/// overwrite the character at the caret position
-		/// </summary>
-		OverwriteMode
-	}
-	
-	
-	public class Caret : System.IDisposable
+    public partial class Caret : System.IDisposable
 	{
 		int       line          = 0;
 		int       column        = 0;
@@ -123,8 +105,10 @@ namespace ICSharpCode.TextEditor
 			textArea.LostFocus += new EventHandler(LostFocus);
 			if (Environment.OSVersion.Platform == PlatformID.Unix)
 				caretImplementation = new ManagedCaret(this);
+#if WINDOWS            
 			else
 				caretImplementation = new Win32Caret(this);
+#endif
 		}
 		
 		public void Dispose()
@@ -311,7 +295,6 @@ namespace ICSharpCode.TextEditor
 			//Console.WriteLine(text);
 		}
 		
-		#region Caret implementation
 		internal void PaintCaret(Graphics g)
 		{
 			caretImplementation.PaintCaret(g);
@@ -397,57 +380,7 @@ namespace ICSharpCode.TextEditor
 				timer.Dispose();
 			}
 		}
-		
-		class Win32Caret : CaretImplementation
-		{
-			[DllImport("User32.dll")]
-			static extern bool CreateCaret(IntPtr hWnd, int hBitmap, int nWidth, int nHeight);
-			
-			[DllImport("User32.dll")]
-			static extern bool SetCaretPos(int x, int y);
-			
-			[DllImport("User32.dll")]
-			static extern bool DestroyCaret();
-			
-			[DllImport("User32.dll")]
-			static extern bool ShowCaret(IntPtr hWnd);
-			
-			[DllImport("User32.dll")]
-			static extern bool HideCaret(IntPtr hWnd);
-			
-			TextArea textArea;
-			
-			public Win32Caret(Caret caret)
-			{
-				this.textArea = caret.textArea;
-			}
-			
-			public override bool Create(int width, int height)
-			{
-				return CreateCaret(textArea.Handle, 0, width, height);
-			}
-			public override void Hide()
-			{
-				HideCaret(textArea.Handle);
-			}
-			public override void Show()
-			{
-				ShowCaret(textArea.Handle);
-			}
-			public override bool SetPosition(int x, int y)
-			{
-				return SetCaretPos(x, y);
-			}
-			public override void PaintCaret(Graphics g)
-			{
-			}
-			public override void Destroy()
-			{
-				DestroyCaret();
-			}
-		}
-		#endregion
-		
+
 		bool firePositionChangedAfterUpdateEnd;
 		
 		void FirePositionChangedAfterUpdateEnd(object sender, EventArgs e)

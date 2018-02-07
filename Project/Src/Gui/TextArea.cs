@@ -480,11 +480,11 @@ namespace ICSharpCode.TextEditor
 			Update();
 			updateMargin = null;
 		}
-		
+
 		protected override void OnPaintBackground(System.Windows.Forms.PaintEventArgs pevent)
 		{
 		}
-		
+
 		protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
 		{
 			int currentXPos = 0;

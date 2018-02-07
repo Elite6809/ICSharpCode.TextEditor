@@ -217,9 +217,14 @@ namespace ICSharpCode.TextEditor
 			}
 		}
 		
-		public void AdjustScrollBars()
+		public void AdjustScrollBars ()
 		{
 			adjustScrollBarsOnNextUpdate = false;
+			// http://community.sharpdevelop.net/forums/p/8315/23394.aspx
+			if (textArea == null) {
+				adjustScrollBarsOnNextUpdate = true;
+				return;
+			}
 			vScrollBar.Minimum = 0;
 			// number of visible lines in document (folding!)
 			vScrollBar.Maximum = textArea.MaxVScrollValue;
