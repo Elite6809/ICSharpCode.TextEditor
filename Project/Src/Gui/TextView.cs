@@ -1048,7 +1048,8 @@ namespace ICSharpCode.TextEditor
             // TextFormatFlags.NoClipping
             // Allows the overhanging parts of glyphs and unwrapped text reaching outside the formatting rectangle to show.
             // see https://github.com/mono/mono/issues/6352
-            TextRenderer.DrawText (g, text, font, new Point (x, y), color, textFormatFlags | TextFormatFlags.NoClipping);
+            var rect = new Rectangle (x, y, int.MaxValue, int.MaxValue);
+            TextRenderer.DrawText (g, text, font, rect, color, textFormatFlags | TextFormatFlags.NoClipping );
 		}
 		
 		void DrawInvalidLineMarker(Graphics g, int x, int y)
